@@ -1,32 +1,13 @@
-import { app } from '../src/core/index.js';
+import { app } from '../src/core/index.js'; 
 
-const Navbar = {
-  template: ({ $emit }) => `
-    <nav data-component="navbar">
-      <a href="#" @click="handleHomeClick">Home</a> |
-      <a href="#" @click="handleAboutClick">About</a>
-      <a href="#" @click="handleContactClick">Contact</a>
-    </nav>
-  `,
-  
-  handlers: {
-    handleHomeClick: (e) => {
-      e.preventDefault();
-      console.log('Home clicked');
-      // Navigation logic here
-    },
-    
-    handleAboutClick: (e) => {
-      e.preventDefault();
-      console.log('About clicked');
-    },
-    
-    handleContactClick: (e) => {
-      e.preventDefault();
-      console.log('Contact clicked');
-    }
-  }
-};
+const Navbar = (props) => `
+  <nav>
+    <a href="#">${props.homeLabel || 'Home'}</a> |
+    <a href="#">${props.aboutLabel || 'About'}</a>
+    ${props.links ? `| <a href="#">${props.links}</a>` : ''}
+  </nav>
+`;
 
-app.component('navbar', Navbar);
+app.component('navbar', Navbar); 
+
 export default Navbar;
